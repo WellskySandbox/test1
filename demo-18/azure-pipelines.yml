@@ -8,8 +8,8 @@ trigger:
       - '*'
 
 variables:
-  RepoName: $REPO_NAME
-  SolutionFile: $REPO_NAME.sln
+  RepoName: demo-18
+  SolutionFile: demo-18
   WorkspacePath: $WORKSPACE_PATH
 
 stages:
