@@ -27,8 +27,8 @@ stages:
             version: '6.0.x'
 
         - script: |
-            dotnet restore $(RepoName)/$(SolutionFile)
-            dotnet build $(RepoName)/$(SolutionFile) --no-restore --configuration Release
+            dotnet restore \$(RepoName)/$(SolutionFile)
+            dotnet build \$(RepoName)/$(SolutionFile) --no-restore --configuration Release
           displayName: 'Restore and Build'
 
         - script: |
