@@ -28,9 +28,9 @@ stages:
             version: '6.0.x'
 
         - script: |
-            echo "RepoName is: \$(RepoName)"
-            echo "SolutionFile is: \$(SolutionFile)"
-            echo "WorkspacePath is: \$(WorkspacePath)"
+            echo "$(RepoName)"
+            echo "$(SolutionFile)"
+            echo "$(WorkspacePath)"
           displayName: 'Print Variables'
 
         - script: |
