@@ -8,8 +8,8 @@ trigger:
       - '*'
 
 variables:
-  RepoName: demo-1
-  SolutionFile: demo-1.sln
+  RepoName: demo_1
+  SolutionFile: demo_1.sln
 
 stages:
 - stage: Build
@@ -27,11 +27,8 @@ stages:
             version: '6.0.x'
 
         - script: |
-            workspace="$(WorkspacePath)"
-            solution="$(SolutionFile)"
-            echo "Restoring: $workspace/$solution"
-            dotnet restore "$workspace/$solution"
-            dotnet build "$workspace/$solution" --no-restore --configuration Release
+            dotnet restore test1.sln
+            dotnet build test1.sln --no-restore --configuration Release
           displayName: 'Restore and Build'
 
         - script: |
