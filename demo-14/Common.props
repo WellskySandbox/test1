@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <PackageId>demo_14</PackageId>
+    <Title>demo_14</Title>
+    <Authors>WellSky</Authors>
+    <Owners>WellSky</Owners>
+    <PackageVersion>0.0.0.999</PackageVersion>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright 2025 (c) WellSky</Copyright>
+    <Description>demo_14</Description>
+    <PackageTags></PackageTags>
+  </PropertyGroup>
+</Project>
