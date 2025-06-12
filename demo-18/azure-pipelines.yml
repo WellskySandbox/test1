@@ -8,9 +8,9 @@ trigger:
       - '*'
 
 variables:
-  RepoName: demo-18
-  SolutionFile: demo-18.sln
-  WorkspacePath: C:\Users\SUKHCH~1.K\AppData\Local\Temp\4a821a11-b3d7-4749-b157-82b78ca1f825
+  RepoName: $REPO_NAME
+  SolutionFile: $REPO_NAME.sln
+  WorkspacePath: $WORKSPACE_PATH
 
 stages:
 - stage: Build
@@ -28,17 +28,17 @@ stages:
             version: '6.0.x'
 
         - script: |
-            echo "RepoName is: $(RepoName)"
-            echo "SolutionFile is: $(SolutionFile)"
-            echo "WorkspacePath is: $(WorkspacePath)"
+            echo "RepoName is: \$(RepoName)"
+            echo "SolutionFile is: \$(SolutionFile)"
+            echo "WorkspacePath is: \$(WorkspacePath)"
           displayName: 'Print Variables'
 
         - script: |
-            echo "Restoring solution: dotnet restore /"
-            dotnet restore "/"
-            dotnet build "/" --no-restore --configuration Release
+            echo "Restoring and building the solution...$(RepoName)/\$(SolutionFile)"
+            dotnet restore \$(RepoName)/\$(SolutionFile)
+            dotnet build \$(RepoName)/\$(SolutionFile) --no-restore --configuration Release
           displayName: 'Restore and Build'
 
         - script: |
-            dotnet test $(RepoName)/$(SolutionFile) --no-build --configuration Release --logger trx
+            dotnet test \$(RepoName)/\$(SolutionFile) --no-build --configuration Release --logger trx
           displayName: 'Run Tests'
