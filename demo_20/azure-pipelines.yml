@@ -1,0 +1,44 @@
+trigger:
+  batch: true
+  branches:
+    include:
+      - '*'
+  tags:
+    include:
+      - '*'
+
+variables:
+  RepoName: demo_20
+  SolutionFile: demo_20.sln
+  WorkspacePath: /tmp/aafb8903-9d6e-47c0-84ab-5256542a6cd5
+
+stages:
+- stage: Build
+  displayName: Build Stage
+  jobs:
+    - job: Build
+      displayName: Build Job
+      pool:
+        vmImage: 'ubuntu-latest'
+
+      steps:
+        - task: UseDotNet@2
+          inputs:
+            packageType: 'sdk'
+            version: '6.0.x'
+
+        - script: |
+            echo "RepoName is: $(RepoName)"
+            echo "SolutionFile is: $(SolutionFile)"
+            echo "WorkspacePath is: $(WorkspacePath)"
+          displayName: 'Print Variables'
+
+        - script: |
+            echo "Restoring and building the solution.../$(SolutionFile)"
+            dotnet restore $(RepoName)/$(SolutionFile)
+            dotnet build $(RepoName)/$(SolutionFile) --no-restore --configuration Release
+          displayName: 'Restore and Build'
+
+        - script: |
+            dotnet test $(RepoName)/$(SolutionFile) --no-build --configuration Release --logger trx
+          displayName: 'Run Tests'
